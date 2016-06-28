@@ -24,6 +24,7 @@ class PHPUnit_Framework_MockObject_Stub_ReturnValueMap implements PHPUnit_Framew
 
     public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
     {
+        /** @var $invocation PHPUnit_Framework_MockObject_Invocation_Static */
         $parameterCount = count($invocation->parameters);
 
         foreach ($this->valueMap as $map) {

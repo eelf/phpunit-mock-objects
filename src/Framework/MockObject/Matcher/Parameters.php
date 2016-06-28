@@ -24,9 +24,7 @@ class PHPUnit_Framework_MockObject_Matcher_Parameters extends PHPUnit_Framework_
      */
     protected $parameters = [];
 
-    /**
-     * @var PHPUnit_Framework_MockObject_Invocation
-     */
+    /** @var $invocation PHPUnit_Framework_MockObject_Invocation_Static */
     protected $invocation;
 
     /**
@@ -110,7 +108,7 @@ class PHPUnit_Framework_MockObject_Matcher_Parameters extends PHPUnit_Framework_
             );
         }
 
-        if (count($this->invocation->parameters) < count($this->parameters)) {
+        if (count($this->invocation->parametersDeref) < count($this->parameters)) {
             $message = 'Parameter count for invocation %s is too low.';
 
             // The user called `->with($this->anything())`, but may have meant
@@ -129,7 +127,7 @@ class PHPUnit_Framework_MockObject_Matcher_Parameters extends PHPUnit_Framework_
 
         foreach ($this->parameters as $i => $parameter) {
             $parameter->evaluate(
-                $this->invocation->parameters[$i],
+                $this->invocation->parametersDeref[$i],
                 sprintf(
                     'Parameter %s for invocation %s does not match expected ' .
                     'value.',

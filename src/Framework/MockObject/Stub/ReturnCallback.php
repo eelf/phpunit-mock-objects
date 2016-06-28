@@ -22,6 +22,7 @@ class PHPUnit_Framework_MockObject_Stub_ReturnCallback implements PHPUnit_Framew
 
     public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
     {
+        /** @var $invocation PHPUnit_Framework_MockObject_Invocation_Static */
         return call_user_func_array($this->callback, $invocation->parameters);
     }
 

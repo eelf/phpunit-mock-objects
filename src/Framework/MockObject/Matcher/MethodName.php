@@ -63,6 +63,7 @@ class PHPUnit_Framework_MockObject_Matcher_MethodName extends PHPUnit_Framework_
      */
     public function matches(PHPUnit_Framework_MockObject_Invocation $invocation)
     {
+        /** @var $invocation PHPUnit_Framework_MockObject_Invocation_Static */
         return $this->constraint->evaluate($invocation->methodName, '', true);
     }
 }

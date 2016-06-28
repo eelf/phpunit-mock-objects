@@ -1034,4 +1034,18 @@ class Framework_MockObjectTest extends PHPUnit_Framework_TestCase
             $mock->bar('call_' . $i);
         }
     }
+
+    public function testMockArgumentsPassedByReference5()
+    {
+        $a = ['called'];
+        $b = $c = 0;
+        $foo = $this->getMock('MethodCallbackByReference', ['bar']);
+        $foo->expects($this->once())
+            ->method('bar')
+            ->with($a, $b, $c)
+            ->will($this->returnCallback(function (&$a, &$b, $c) {}));
+        $foo->bar($a, $b, $c);
+        $a[] = 'added';
+        $this->assertEquals(['called', 'added'], $a);
+    }
 }

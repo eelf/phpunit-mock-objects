@@ -101,7 +101,8 @@ class PHPUnit_Framework_MockObject_Matcher_ConsecutiveParameters extends PHPUnit
             );
         }
 
-        if (count($invocation->parameters) < count($parameters)) {
+        /** @var $invocation PHPUnit_Framework_MockObject_Invocation_Static */
+        if (count($invocation->parametersDeref) < count($parameters)) {
             throw new PHPUnit_Framework_ExpectationFailedException(
                 sprintf(
                     'Parameter count for invocation %s is too low.',
@@ -111,8 +112,9 @@ class PHPUnit_Framework_MockObject_Matcher_ConsecutiveParameters extends PHPUnit
         }
 
         foreach ($parameters as $i => $parameter) {
+            /** @var $invocation PHPUnit_Framework_MockObject_Invocation_Static */
             $parameter->evaluate(
-                $invocation->parameters[$i],
+                $invocation->parametersDeref[$i],
                 sprintf(
                     'Parameter %s for invocation #%d %s does not match expected ' .
                     'value.',

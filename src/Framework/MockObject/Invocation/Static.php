@@ -58,6 +58,11 @@ class PHPUnit_Framework_MockObject_Invocation_Static implements PHPUnit_Framewor
     public $parameters;
 
     /**
+     * @var array
+     */
+    public $parametersDeref = [];
+
+    /**
      * @var string
      */
     public $returnType;
@@ -75,6 +80,10 @@ class PHPUnit_Framework_MockObject_Invocation_Static implements PHPUnit_Framewor
         $this->methodName = $methodName;
         $this->parameters = $parameters;
         $this->returnType = $returnType;
+
+        foreach ($parameters as $parameter) {
+            $this->parametersDeref[] = $parameter;
+        }
 
         if (!$cloneObjects) {
             return;

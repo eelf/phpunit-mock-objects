@@ -24,6 +24,7 @@ class PHPUnit_Framework_MockObject_Stub_ReturnArgument extends PHPUnit_Framework
 
     public function invoke(PHPUnit_Framework_MockObject_Invocation $invocation)
     {
+        /** @var $invocation PHPUnit_Framework_MockObject_Invocation_Static */
         if (isset($invocation->parameters[$this->argumentIndex])) {
             return $invocation->parameters[$this->argumentIndex];
         } else {
