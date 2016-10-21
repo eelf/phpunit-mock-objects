@@ -877,6 +877,7 @@ class PHPUnit_Framework_MockObject_Generator
                 ),
                 'clone'             => $cloneTemplate,
                 'mock_class_name'   => $mockClassName['className'],
+                'full_class_name'   => var_export($mockClassName['fullClassName'], true),
                 'mocked_methods'    => $mockedMethods,
                 'method'            => $method,
                 'configurable'      => '[' . implode(', ', array_map(function ($m) { return '\'' . $m . '\'';}, $configurable)) . ']'

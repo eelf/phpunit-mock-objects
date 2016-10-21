@@ -35,11 +35,17 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
     private $configurableMethods = [];
 
     /**
+     * @var string
+     */
+    private $fullClassName;
+
+    /**
      * @param array $configurableMethods
      */
-    public function __construct(array $configurableMethods)
+    public function __construct(array $configurableMethods, $fullClassName)
     {
         $this->configurableMethods = $configurableMethods;
+        $this->fullClassName = $fullClassName;
     }
 
     /**
@@ -105,7 +111,8 @@ class PHPUnit_Framework_MockObject_InvocationMocker implements PHPUnit_Framework
         return new PHPUnit_Framework_MockObject_Builder_InvocationMocker(
             $this,
             $matcher,
-            $this->configurableMethods
+            $this->configurableMethods,
+            $this->fullClassName
         );
     }
 
